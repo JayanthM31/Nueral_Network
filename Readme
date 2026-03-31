@@ -1,1 +1,118 @@
+# Physics-Informed Neural Network for Fatigue Crack Growth Prediction
 
+##  Overview
+This project presents a Physics-Informed Neural Network (PINN) surrogate model for accelerated prediction of fatigue crack growth using Cohesive Zone Modeling (CZM). The model integrates physical laws with deep learning to achieve high accuracy and significantly reduced computation time.
+
+
+##  Problem Statement
+Fatigue crack growth prediction is critical in structural integrity assessment, especially in aerospace and mechanical systems. Traditional Finite Element Methods (FEM) using Cohesive Zone Modeling (CZM) provide accurate results but are computationally expensive and time-consuming.
+
+Machine learning models can accelerate predictions but often fail to maintain physical consistency.
+
+
+##  Proposed Solution
+A Physics-Informed Neural Network (PINN) is developed by embedding the **Paris-Erdogan fatigue law** as a physics constraint into the neural network.
+
+This approach:
+- Combines **FEM accuracy** with **ML speed**
+- Ensures **physically consistent predictions**
+- Enables **real-time fatigue analysis**
+
+---
+
+##  Methodology
+
+### 1. Data Generation
+- Finite Element simulations performed using **Abaqus**
+- Compact Tension (CT) specimen of Aluminum 2024-T3 used
+- Crack growth data extracted over fatigue cycles :contentReference[oaicite:0]{index=0}  
+
+---
+
+### 2. Data Preprocessing
+- Normalization of input/output data
+- Train-validation-test split (70%-15%-15%)
+
+---
+
+### 3. PINN Model Design
+- Fully connected neural network
+- 4 hidden layers with 64 neurons each
+- Activation function: Tanh
+- Input: Cycle count  
+- Output: Crack length  
+
+---
+
+### 4. Physics Integration
+- Paris-Erdogan Law used as constraint:
+  
+  da/dN = C(ΔK)^m
+
+- Loss function:
+  
+  Total Loss = Data Loss + λ × Physics Loss
+
+---
+
+### 5. Training
+- Optimizer: Adam  
+- Epochs: 6000  
+- Learning rate scheduling applied  
+- Automatic differentiation used for physics enforcement  
+
+---
+
+##  Results
+
+- RMSE: **0.42 mm**  
+- R² Score: **0.998**  
+- Accuracy improvement: **51%** over data-only models  
+- Computational speedup: **~344,000× faster** :contentReference[oaicite:1]{index=1}  
+
+---
+
+##  Key Contributions
+- Integration of physics laws into neural networks  
+- High accuracy fatigue crack prediction  
+- Massive computational speed improvement  
+- Real-time prediction capability  
+
+---
+
+##  Tech Stack
+- Python  
+- PyTorch  
+- Abaqus (FEM Simulation)  
+- Physics-Informed Neural Networks (PINN)  
+- NumPy  
+
+---
+
+##  Applications
+- Structural Health Monitoring (SHM)  
+- Aerospace engineering  
+- Mechanical system failure prediction  
+- Digital twin systems  
+
+
+
+##  Limitations
+- Limited to 2D crack modeling  
+- Single material (Aluminum 2024-T3)  
+- Constant loading conditions  
+
+
+
+##  Future Work
+- Extend to 3D crack modeling  
+- Multi-material systems  
+- Real-time deployment in digital twins  
+- Uncertainty quantification  
+
+---
+
+## 📚 References
+- Physics-Informed Neural Networks (Raissi et al.)  
+- Paris-Erdogan Fatigue Law  
+- Abaqus FEM Documentation  
